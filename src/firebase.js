@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -31,4 +31,18 @@ const signup = async (name, email, password)=>{
         console.log(error)
         alert(error)
     }
+}
+
+
+const login = async (email, password) =>{
+  try {
+      await signInWithEmailAndPassword(auth, email, password)
+  } catch (error) {
+      console.log(error)
+      alert(error)
+  }
+}
+
+const logout = () =>{
+    signOut(auth)
 }
