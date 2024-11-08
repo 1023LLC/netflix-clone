@@ -24,7 +24,7 @@ const Footer = () => {
         <li>Contact Us</li>
       </ul>
       <div className="spread">
-        <p className="copyright-text">&copy; 1997 - 2023 Netflix, Inc.</p>
+        <p className="copyright-text">&copy; 1997 - {new Date().getFullYear()} Netflix, Inc.</p>
         <div className="footer-icons">
           <img src={youtube_icon} alt="youtube_icon" />
           <img src={twitter_icon} alt="twitter_icon" />
