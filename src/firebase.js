@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC9YsLN1ig1XYqKQOnnaMreglaSxMAPgJw",
@@ -29,19 +30,32 @@ const signup = async (name, email, password)=>{
         })
     } catch (error) {
         console.log(error)
-        alert(error)
+        toast.error(error.code.split('/')[1].split('-').join(' '))
     }
 }
 
 
-const login = async (email, password) =>{
+const login = async (email, password) => {
   try {
-      await signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
-      console.log(error)
-      alert(error)
+
+    console.log(error)
+    toast.error(error.code.split('/')[1].split('-').join(' '))
+
+    // let message;
+    // switch (error.code) {
+    //   case 'auth/invalid-credential':
+    //     message = 'Invalid credentials! Please check your email and password.';
+    //     break;
+    //   default:
+    //     message = 'An unexpected error occurred. Please try again.';
+    // }
+    // console.error(error); 
+    // toast.error(message); 
   }
-}
+};
+
 
 const logout = () =>{
     signOut(auth)
